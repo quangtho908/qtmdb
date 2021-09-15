@@ -12,16 +12,33 @@ export class TaskService extends BaseService<TaskDocument> {
     ){super(taskModel)}
 
     async getById(id: string): Promise<TaskDocument> {
-        const data = await this.findById(id);
+        const data = await this.findById(id).lean();
         if(!data) throw new NotFoundException("Task is not found");
         return data;
     }
 
-    async createTask(create: CreateTaskDto) {
+    async createTask(create: CreateTaskDto): Promise<TaskDocument[] | TaskDocument> {
         return await this.create<CreateTaskDto>(create);
     }
 
-    async updateTask(id: string, update: UpdateTaskDto) {
-        return await this.updateById(id, update);
+    async updateTask(update: UpdateTaskDto): Promise<TaskDocument> {        
+        const { id, ...data } = update;
+        
+        const [, updated] = await Promise.all([
+            this.getById(id),
+            this.updateByIdAsync(id, data, { new: true })
+        ])
+
+        return updated;
+    }
+
+    async deleteTask(id: string): Promise<TaskDocument> {
+
+        const [, deleted] = await Promise.all([
+            this.getById(id),
+            this.deleteByIdAsync(id)
+        ])
+
+        return deleted;
     }
 }

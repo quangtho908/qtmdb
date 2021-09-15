@@ -1,18 +1,33 @@
-import { IsString, IsNotEmpty, IsDate } from "class-validator"
+import { IsString, IsNotEmpty, IsDate, IsArray } from "class-validator"
 
 export class CreateTaskDto {
-  @IsString()
   @IsNotEmpty()
+  @IsString()
   title: string
 
   @IsString()
-  description: string
+  description?: string
 
-  @IsDate()
   @IsNotEmpty()
+  @IsDate()
   dateCreate: Date
 }
 
-export type UpdateTaskDto = {
+export class UpdateTaskDto {
 
+  @IsNotEmpty()
+  @IsString()
+  id: string
+
+  @IsString()
+  title?: string
+
+  @IsString()
+  description?: string
+
+  @IsDate()
+  deadline?: Date
+
+  @IsArray()
+  items?: any[]
 }
