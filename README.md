@@ -17,5 +17,5 @@
 **Thanks to reading**
 
 **Contact with me**
-- Facebook[Facebook](https://www.facebook.com/tho.developer/)
-- Instagram[Instagram](https://www.instagram.com/quangtho_tpc/)
+- [x] [Facebook](https://www.facebook.com/tho.developer/)
+- [x] [Instagram](https://www.instagram.com/quangtho_tpc/)
