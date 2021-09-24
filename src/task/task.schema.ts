@@ -18,7 +18,7 @@ export class Task {
     deadline: Date
 
     @Prop({ type: Array })
-    items: any[]
+    items: string[]
 }
 
 export const TaskSchema = SchemaFactory.createForClass(Task);
